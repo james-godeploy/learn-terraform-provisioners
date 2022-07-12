@@ -1,0 +1,16 @@
+---
+- name: setup httpd webserver
+  hosts: webservers
+  become: yes
+  remote_user: ec2-user
+
+  tasks:
+    - name: Install apache package
+      yum:
+        name: httpd
+        state: present
+
+    - name: ensure httpd is running
+      service:
+        name: httpd
+        state: started
